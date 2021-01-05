@@ -1,0 +1,52 @@
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    env:
+      VISION_DOMAIN: https://vision.qq.com
+      LIB_NAME: materials-nolan-test-saas
+      VISION_ACCESS_TOKEN: ${{ secrets.VISION_ACCESS_TOKEN }}
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: echo VISION_ACCESS_TOKEN
+        run: echo $VISION_ACCESS_TOKEN
+
+      - name: 安装依赖
+        run: npm ci
+
+      # Runs a single command using the runners shell
+      - name: 执行构建
+        run: npm run dist
+
+      - name: 将构建结果转移到临时目录
+        run: |
+          mkdir $LIB_NAME && cp -r ./dist ./$LIB_NAME/dist && cp -r ./src ./$LIB_NAME/src && cp -r ./webpack ./$LIB_NAME/webpack && cp -r ./package.json ./$LIB_NAME/package.json && cp -r ./package-lock.json ./$LIB_NAME/package-lock.json 
+
+      - name: 打包文件目录
+        run: zip -r $LIB_NAME.zip $LIB_NAME -x "$LIB_NAME/node_modules/*"
+
+      - name: 上传素材
+        run: |
+          curl $VISION_DOMAIN/cgi/materials -F file=@"$LIB_NAME.zip" -F "lib=$LIB_NAME" -F "materialSecretToken=$VISION_ACCESS_TOKEN"
+
+      - name: copy lib 并同步数据库
+        run: |
+          curl -X POST $VISION_DOMAIN/cgi/component -H 'Content-Type:application/x-www-form-urlencoded' -d user=githubActionBuilder -d lib=$LIB_NAME

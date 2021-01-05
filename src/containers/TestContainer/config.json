@@ -1,0 +1,12 @@
+{
+  "name": "TestContainer",
+  "desc": "TestContainer",
+  "author": "",
+  "type": "*",
+  "dataForm": {
+    "keywords": {
+      "type": "textarea",
+      "title": "页面关键词"
+    }
+  }
+}

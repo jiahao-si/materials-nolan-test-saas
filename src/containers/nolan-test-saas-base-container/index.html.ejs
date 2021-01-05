@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=9">
+  <meta name="renderer" content="webkit|ie-stand">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no"/>
+  <meta name="description" content="<%= meta.desc %>">
+  <title><%= meta.title %></title>
+
+  <!-- DNS 预加载 -->
+  <link rel="dns-prefetch" href="//7.url.cn">
+  <link rel="dns-prefetch" href="//8.url.cn">
+  <link rel="dns-prefetch" href="//9.url.cn">
+  <link rel="dns-prefetch" href="//pub.idqqimg.com">
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="//mat1.gtimg.com/www/icon/favicon2.ico"/>
+</head>
+
+<body>
+  <!-- 挂载节点 -->
+  <div id="react-body" class="main-wrap">
+    <?- ssrHtml ?>
+  </div>
+</body>
+</html>

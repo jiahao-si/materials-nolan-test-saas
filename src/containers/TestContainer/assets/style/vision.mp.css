@@ -1,0 +1,102 @@
+/** reset display start
+  * 依据kbone mp-webpack-plugin app.display.tmpl
+  */
+body, p, address, article, aside, div, footer, header, hgroup, main, nav, section, blockquote, figcaption, figure, center, hr, h1, h2, h3, h4, h5, h6, ul, menu, dir, ol, dd, dl, dt, form, legend, fieldset, pre, details, summary {
+  display: block;
+}
+
+q, output, a, abbr, b, button, code, i, label, small, span, strong, time {
+  display: inline;
+}
+
+input, textarea, keygen, select, button, img, br {
+  display: inline-block;
+}
+
+datalist, area, param, template {
+  display: none;
+}
+
+table {
+  display: table;
+}
+
+thead {
+  display: table-header-group;
+}
+
+tbody {
+  display: table-row-group;
+}
+
+tfoot {
+  display: table-footer-group;
+}
+
+col {
+  display: table-column;
+}
+
+colgroup {
+  display: table-column-group;
+}
+
+tr {
+  display: table-row;
+}
+
+td, th {
+  display: table-cell;
+}
+
+caption {
+  display: table-caption;
+}
+
+li {
+  display: list-item;
+}
+
+i, cite, em, var, address, dfn {
+  font-style: italic;
+}
+/** reset display end */
+
+// 需要两个class来提高优先级
+.wx-comp-button.__impage-hot-area-actions-proxy,
+.wx-comp-button.__impage-component-actions-proxy {
+  position: relative;
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+  font-size: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  line-height: inherit;
+  border-radius: inherit;
+  -webkit-tap-highlight-color: inherit;
+  overflow: hidden;
+  color: inherit;
+  background-color: inherit;
+
+  &::before,
+  &::after {
+    content: '';
+    width: auto;
+    height: auto;
+    position: static;
+    top: 0;
+    left: 0;
+    border: none;
+    -webkit-transform: none;
+    transform: none;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    box-sizing: border-box;
+    border-radius: 0;
+    display: none;
+  }
+}
