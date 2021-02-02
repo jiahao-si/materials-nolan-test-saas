@@ -29,7 +29,7 @@ npm run release
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2019-present, Tencent Imweb Team
+Copyright (c) 2019-present, Tencent Imweb Team 
 
 
 
