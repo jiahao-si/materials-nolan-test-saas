@@ -46,7 +46,3 @@ jobs:
       - name: 上传素材
         run: |
           curl $VISION_DOMAIN/cgi/materials -F file=@"$LIB_NAME.zip" -F "lib=$LIB_NAME" -F "materialSecretToken=$VISION_ACCESS_TOKEN"
-
-      - name: copy lib 并同步数据库
-        run: |
-          curl -X POST $VISION_DOMAIN/cgi/component -H 'Content-Type:application/x-www-form-urlencoded' -d user=githubActionBuilder -d lib=$LIB_NAME
